@@ -1,52 +1,57 @@
 ﻿using System;
-using System.Globalization;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Course
+namespace ConsoleApplication2
 {
     class Program
     {
         static void Main(string[] args)
         {
+            Student[] vect = new Student[10];
 
-            ContaBancaria conta;
+            Console.Write("How many rooms will be rented? ");
+            int n = int.Parse(Console.ReadLine());
 
-            Console.Write("Entre o número da conta: ");
-            int numero = int.Parse(Console.ReadLine());
-            Console.Write("Entre o titular da conta: ");
-            string titular = Console.ReadLine();
-            Console.Write("Haverá depósito inicial (s/n)? ");
-            char resp = char.Parse(Console.ReadLine());
-            if (resp == 's' || resp == 'S')
+
+
+            for (int i = 1; i <= n; i++)
+
             {
-                Console.Write("Entre o valor de depósito inicial: ");
-                double depositoInicial = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-                conta = new ContaBancaria(numero, titular, depositoInicial);
+                Console.WriteLine("Rent #" + i);
+                Console.Write("Name: ");
+                string name = Console.ReadLine();
+                Console.Write("Email: ");
+                string email = Console.ReadLine();
+                Console.Write("Room: ");  
+                int room = int.Parse(Console.ReadLine());
+                Console.WriteLine();
+                vect[room] = new Student(name, email);
             }
-            else
+
+            Console.WriteLine();
+            Console.WriteLine("Busy rooms: ");
+            
+            for (int i = 0; i < 10; i++)
             {
-                conta = new ContaBancaria(numero, titular);
+                if (vect[i] != null)
+                {
+                    Console.WriteLine(i + ": " + vect [i]);
+                }
             }
-
-            Console.WriteLine();
-            Console.WriteLine("Dados da conta:");
-            Console.WriteLine(conta);
-
-            Console.WriteLine();
-            Console.Write("Entre um valor para depósito: ");
-            double quantia = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-            conta.Deposito(quantia);
-            Console.WriteLine("Dados da conta atualizados:");
-            Console.WriteLine(conta);
-
-            Console.WriteLine();
-            Console.Write("Entre um valor para saque: ");
-            quantia = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-            conta.Saque(quantia);
-            Console.WriteLine("Dados da conta atualizados:");
-            Console.WriteLine(conta);
             Console.ReadLine();
+         
+               
+
+
+
+
+              
+
+
+
         }
     }
 }
-
-
